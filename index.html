@@ -975,37 +975,7 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
               <img id="setLogoPreview" class="logo-preview" style="display:none" alt="Logo forhåndsvisning" />
               <button type="button" class="danger-button small-button" style="margin-top:8px;align-self:flex-start" onclick="removeLogo()">Fjern logo</button>
             </div>
-          </div>
         </div>
-
-        <div class="settings-section">
-          <h3>Filamentpris pr. gram (kr.)</h3>
-          <div class="material-price-grid">
-            <div class="form-group">
-              <label for="matPLA">PLA</label>
-              <input id="matPLA" type="number" min="0" step="0.01" />
-            </div>
-            <div class="form-group">
-              <label for="matPETG">PETG</label>
-              <input id="matPETG" type="number" min="0" step="0.01" />
-            </div>
-            <div class="form-group">
-              <label for="matABS">ABS</label>
-              <input id="matABS" type="number" min="0" step="0.01" />
-            </div>
-            <div class="form-group">
-              <label for="matTPU">TPU</label>
-              <input id="matTPU" type="number" min="0" step="0.01" />
-            </div>
-            <div class="form-group">
-              <label for="matResin">Resin</label>
-              <input id="matResin" type="number" min="0" step="0.01" />
-            </div>
-            <div class="form-group">
-              <label for="matAndet">Andet</label>
-              <input id="matAndet" type="number" min="0" step="0.01" />
-            </div>
-          </div>
           <span class="field-hint">Bruges når du vælger et generisk materiale i en ordre. Har du dine egne ruller, så tilføj dem nedenfor — de bruger deres egen pris pr. gram.</span>
         </div>
 
@@ -1929,12 +1899,6 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
       document.getElementById("setCompanyName").value = settings.companyName || "";
       document.getElementById("setCompanyContact").value = settings.companyContact || "";
       document.getElementById("setMobilePayNumber").value = settings.mobilePayNumber || "";
-      document.getElementById("matPLA").value = settings.materialPrices.PLA ?? "";
-      document.getElementById("matPETG").value = settings.materialPrices.PETG ?? "";
-      document.getElementById("matABS").value = settings.materialPrices.ABS ?? "";
-      document.getElementById("matTPU").value = settings.materialPrices.TPU ?? "";
-      document.getElementById("matResin").value = settings.materialPrices.Resin ?? "";
-      document.getElementById("matAndet").value = settings.materialPrices.Andet ?? "";
       document.getElementById("setPowerCost").value = settings.powerCost ?? "";
       document.getElementById("setOrderSurcharge").value = settings.orderSurcharge ?? "";
       document.getElementById("setLowStockThreshold").value = settings.lowStockThreshold ?? 100;
