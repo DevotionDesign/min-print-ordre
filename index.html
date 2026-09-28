@@ -855,6 +855,21 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
           </div>
           
           <div class="form-group">
+            <label for="address">Adresse</label>
+            <input id="address" type="text" placeholder="F.eks. Hestegade 12" />
+          </div>
+
+          <div class="form-group">
+            <label for="zip">Postnummer</label>
+            <input id="zip" type="text" placeholder="F.eks. 9700" />
+          </div>
+
+          <div class="form-group">
+            <label for="city">By</label>
+            <input id="city" type="text" placeholder="F.eks. Brønderslev" />
+          </div>
+          
+          <div class="form-group">
             <label for="createdDate">Oprettet</label>
             <input id="createdDate" type="date" readonly />
           </div>
@@ -1739,6 +1754,9 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
         document.getElementById("product").value = order.product || "";
         document.getElementById("phone").value = order.phone || "";
         document.getElementById("email").value = order.email || "";
+        document.getElementById("address").value = order.address || "";
+        document.getElementById("zip").value = order.zip || "";
+        document.getElementById("city").value = order.city || "";
         document.getElementById("deliveryDate").value = order.deliveryDate || "";
         document.getElementById("printTime").value = order.printTime ?? "";
         document.getElementById("price").value = order.price ?? "";
@@ -1861,6 +1879,9 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
         product: document.getElementById("product").value.trim(),
         phone: document.getElementById("phone").value.trim(),
         email: document.getElementById("email").value.trim(),
+        address: document.getElementById("address").value.trim(),
+        zip: document.getElementById("zip").value.trim(),
+        city: document.getElementById("city").value.trim(),
         materials,
         material: primary.material,
         weight: totalWeight,
