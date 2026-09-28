@@ -1286,6 +1286,14 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
     function profitOf(order) {
       return Number(order.price || 0) - Number(order.cost || 0);
     }
+    function profitPercentOf(order) {
+  const price = Number(order.price || 0);
+  const profit = profitOf(order);
+
+  if (price <= 0) return 0;
+
+  return (profit / price) * 100;
+  }
     function getProfitClass(order) {
       return profitOf(order) < 0 ? "negative-profit" : "positive-profit";
     }
