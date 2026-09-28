@@ -1592,7 +1592,10 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
             </span>
           </td>
           <td>${formatCurrency(order.cost || 0)} ${costBadgeHtml}</td>
-          <td class="${getProfitClass(order)}">${formatCurrency(profitOf(order))}</td>
+          <td class="${getProfitClass(order)}">
+  ${formatCurrency(profitOf(order))}<br>
+  <small>${profitPercentOf(order).toFixed(1)} %</small>
+</td>
           <td>
             <div class="actions">
               <button class="secondary-button small-button" onclick="editOrder(${order.id})">Rediger</button>
