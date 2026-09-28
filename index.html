@@ -316,13 +316,14 @@
       font-size: 0.78rem;
       font-weight: 700;
     }
-    .status-ny { background: #e0e7ff; color: #3730a3; }
-    .status-til-tilbud { background: #fef3c7; color: #92400e; }
-    .status-godkendt { background: #dbeafe; color: #1d4ed8; }
-    .status-under-print { background: #ede9fe; color: #6d28d9; }
-    .status-efterbehandling { background: #fce7f3; color: #9d174d; }
-    .status-klar { background: #dcfce7; color: #166534; }
-    .status-afsluttet { background: #e5e7eb; color: #374151; }
+    .status-ny-ordre { background: #e0e7ff; color: #3730a3; }
+.status-tilbud-sendt { background: #fef3c7; color: #92400e; }
+.status-godkendt { background: #dbeafe; color: #1d4ed8; }
+.status-i-produktion { background: #ede9fe; color: #6d28d9; }
+.status-efterbehandling { background: #fce7f3; color: #9d174d; }
+.status-klar { background: #dcfce7; color: #166534; }
+.status-sendt { background: #cffafe; color: #155e75; }
+.status-afsluttet { background: #e5e7eb; color: #374151; }
 
     .payment-status {
       display: inline-block;
@@ -755,14 +756,14 @@
       <div class="filters">
         <input id="searchInput" type="search" placeholder="Søg efter ordre, kunde eller produkt..." oninput="onFilterChange()" />
         <select id="statusFilter" onchange="onFilterChange()">
-          <option value="">Alle statusser</option>
-          <option value="Ny">Ny</option>
-          <option value="Til tilbud">Til tilbud</option>
-          <option value="Godkendt">Godkendt</option>
-          <option value="Under print">Under print</option>
-          <option value="Efterbehandling">Efterbehandling</option>
-          <option value="Klar">Klar</option>
-          <option value="Afsluttet">Afsluttet</option>
+         <option value="Ny ordre">Ny ordre</option>
+<option value="Tilbud sendt">Tilbud sendt</option>
+<option value="Godkendt">Godkendt</option>
+<option value="I produktion">I produktion</option>
+<option value="Efterbehandling">Efterbehandling</option>
+<option value="Klar">Klar</option>
+<option value="Sendt">Sendt</option>
+<option value="Afsluttet">Afsluttet</option>
         </select>
         <label class="checkbox-wrap">
           <input id="onlyDelayed" type="checkbox" onchange="onFilterChange()" />
@@ -898,13 +899,14 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
           <div class="form-group">
             <label for="status">Status</label>
             <select id="status">
-              <option value="Ny">Ny</option>
-              <option value="Til tilbud">Til tilbud</option>
-              <option value="Godkendt">Godkendt</option>
-              <option value="Under print">Under print</option>
-              <option value="Efterbehandling">Efterbehandling</option>
-              <option value="Klar">Klar</option>
-              <option value="Afsluttet">Afsluttet</option>
+             <option value="Ny ordre">Ny ordre</option>
+<option value="Tilbud sendt">Tilbud sendt</option>
+<option value="Godkendt">Godkendt</option>
+<option value="I produktion">I produktion</option>
+<option value="Efterbehandling">Efterbehandling</option>
+<option value="Klar">Klar</option>
+<option value="Sendt">Sendt</option>
+<option value="Afsluttet">Afsluttet</option>
             </select>
           </div>
 
@@ -1214,16 +1216,26 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
 
     // ---------------- Constants ----------------
     const statusClasses = {
-      "Ny": "status-ny",
-      "Til tilbud": "status-til-tilbud",
-      "Godkendt": "status-godkendt",
-      "Under print": "status-under-print",
-      "Efterbehandling": "status-efterbehandling",
-      "Klar": "status-klar",
-      "Afsluttet": "status-afsluttet"
+  "Ny ordre": "status-ny-ordre",
+  "Tilbud sendt": "status-tilbud-sendt",
+  "Godkendt": "status-godkendt",
+  "I produktion": "status-i-produktion",
+  "Efterbehandling": "status-efterbehandling",
+  "Klar": "status-klar",
+  "Sendt": "status-sendt",
+  "Afsluttet": "status-afsluttet"
     };
 
-    const ALL_STATUSES = ["Ny","Til tilbud","Godkendt","Under print","Efterbehandling","Klar","Afsluttet"];
+   const ALL_STATUSES = [
+  "Ny ordre",
+  "Tilbud sendt",
+  "Godkendt",
+  "I produktion",
+  "Efterbehandling",
+  "Klar",
+  "Sendt",
+  "Afsluttet"
+];
 
     // ---------------- Helpers ----------------
     function formatCurrency(value) {
@@ -1726,11 +1738,11 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
         document.getElementById("price").value = order.price ?? "";
         document.getElementById("cost").value = order.cost ?? 0;
         document.getElementById("paymentStatus").value = order.paymentStatus || "Ikke betalt";
-        document.getElementById("status").value = order.status || "Ny";
+        document.getElementById("status").value = order.status || "Ny ordre";
         document.getElementById("notes").value = order.notes || "";
         renderMaterialLines(order.materials || (order.material ? [{ material: order.material, weight: order.weight || 0 }] : []));
       } else {
-        document.getElementById("status").value = "Ny";
+        document.getElementById("status").value = "Ny ordre";
         renderMaterialLines([]);
       }
       updateCostBadge();
