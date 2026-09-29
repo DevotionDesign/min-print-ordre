@@ -1649,28 +1649,36 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
 
     // ---------------- Order modal ----------------
     function populateMaterialSelect(select, currentValue) {
-      const fixed = ["PLA","PETG","ABS","TPU","Resin","Andet"];
-      let html = fixed.map(m => `<option value="${m}">${m}</option>`).join("");
-      const customs = settings.customFilaments || [];
-      if (customs.length) {
-        html += `<optgroup label="Mine filamenter">`;
-        html += customs.map(f => {
-          const pg = Number(f.grams) > 0 ? (Number(f.price)/Number(f.grams)) : 0;
-          const pgLabel = pg > 0 ? `${pg.toFixed(2)} kr/g` : "";
-          const remaining = f.remaining != null ? Number(f.remaining) : Number(f.grams || 0);
-          const stockLabel = `${Math.max(0, remaining).toFixed(0)} g tilbage`;
-          const parts = [stockLabel, pgLabel].filter(Boolean).join(" · ");
-          return `<option value="custom:${escapeHtml(f.id)}">${escapeHtml(f.name)} — ${parts}</option>`;
-        }).join("");
-        html += `</optgroup>`;
-      }
-      select.innerHTML = html;
-      if (currentValue && (fixed.includes(currentValue) || (currentValue.startsWith("custom:") && findCustomFilament(currentValue.slice(7))))) {
-        select.value = currentValue;
-      } else {
-        select.value = "PLA";
-      }
-    }
+  const customs = settings.customFilaments || [];
+  let html = "";
+
+  if (customs.length) {
+    html += `<optgroup label="Mine filamenter">`;
+    html += customs.map(f => {
+      const pg = Number(f.grams) > 0 ? (Number(f.price) / Number(f.grams)) : 0;
+      const pgLabel = pg > 0 ? `${pg.toFixed(2)} kr/g` : "";
+      const remaining = f.remaining != null ? Number(f.remaining) : Number(f.grams || 0);
+      const stockLabel = `${Math.max(0, remaining).toFixed(0)} g tilbage`;
+      const parts = [stockLabel, pgLabel].filter(Boolean).join(" · ");
+      return `<option value="custom:${escapeHtml(f.id)}">${escapeHtml(f.name)} — ${parts}</option>`;
+    }).join("");
+    html += `</optgroup>`;
+  }
+
+  select.innerHTML = html;
+
+  if (
+    currentValue &&
+    currentValue.startsWith("custom:") &&
+    findCustomFilament(currentValue.slice(7))
+  ) {
+    select.value = currentValue;
+  } else if (customs.length) {
+    select.value = `custom:${customs[0].id}`;
+  } else {
+    select.value = "";
+  }
+}
 
     function renderMaterialLines(materials) {
       const box = document.getElementById("materialLines");
