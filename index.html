@@ -2080,13 +2080,13 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
       settings.companyContact = document.getElementById("setCompanyContact").value.trim();
       settings.mobilePayNumber = document.getElementById("setMobilePayNumber").value.trim();
       settings.materialPrices = {
-        PLA: Number(document.getElementById("matPLA").value || 0),
-        PETG: Number(document.getElementById("matPETG").value || 0),
-        ABS: Number(document.getElementById("matABS").value || 0),
-        TPU: Number(document.getElementById("matTPU").value || 0),
-        Resin: Number(document.getElementById("matResin").value || 0),
-        Andet: Number(document.getElementById("matAndet").value || 0),
-      };
+        PLA: settings.materialPrices?.PLA || 0,
+        PETG: settings.materialPrices?.PETG || 0,
+        ABS: settings.materialPrices?.ABS || 0,
+        TPU: settings.materialPrices?.TPU || 0,
+        Resin: settings.materialPrices?.Resin || 0,
+        Andet: settings.materialPrices?.Andet || 0,
+        };
       settings.powerCost = Number(document.getElementById("setPowerCost").value || 0);
       settings.orderSurcharge = Number(document.getElementById("setOrderSurcharge").value || 0);
       settings.lowStockThreshold = Number(document.getElementById("setLowStockThreshold").value || 0);
