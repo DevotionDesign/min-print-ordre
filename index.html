@@ -1695,7 +1695,19 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
       list.forEach(m => addMaterialLine(m, /*silent*/ true));
       recalcCost();
     }
+    
+function changeQuantity(amount) {
+  const input = document.getElementById("quantity");
+  if (!input) return;
 
+  let value = Number(input.value) || 1;
+  value += amount;
+
+  if (value < 1) value = 1;
+
+  input.value = value;
+}
+    
     function addMaterialLine(defaults, silent) {
       const box = document.getElementById("materialLines");
       const line = document.createElement("div");
