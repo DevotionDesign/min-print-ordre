@@ -1575,7 +1575,12 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
             ${formatDate(order.deliveryDate)}
             ${isOverdue(order) ? '<span class="overdue-badge">Forsinket</span>' : ''}
           </td>
-          <td>${formatCurrency(order.price)}</td>
+         <td>
+  ${formatCurrency(order.price)}
+  ${Number(order.shipping || 0) > 0
+    ? `<br><small>Fragt: ${formatCurrency(order.shipping)}</small>`
+    : ""}
+</td>
           <td>
             <span class="payment-status ${order.paymentStatus === "Betalt" ? "payment-paid" : "payment-unpaid"}">
               ${escapeHtml(order.paymentStatus || "Ikke betalt")}
