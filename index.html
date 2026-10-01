@@ -1553,7 +1553,11 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
         row.innerHTML = `
           <td class="order-number">#${order.id}</td>
           <td>${escapeHtml(order.customer)}</td>
-          <td>${escapeHtml(order.product)}</td>
+          <td>
+  ${escapeHtml(order.product)}
+  <br>
+  <small>${Number(order.quantity || 1)} stk.</small>
+</td>
           <td>
             <span class="status ${statusClasses[order.status] || ""}">
               ${escapeHtml(order.status)}
