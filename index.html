@@ -926,6 +926,13 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
           </div>
 
           <div class="form-group">
+             <label for="shipping">Fragt</label>
+            <select id="shipping" onchange="updateShipping()">
+            <option value="0">Ingen fragt</option>
+            <option value="23">DAO – 23 kr.</option>
+            <option value="50">GLS – 50 kr.</option>
+            </select>
+            </div>
             <label for="status">Status</label>
             <select id="status">
              <option value="Ny ordre">Ny ordre</option>
