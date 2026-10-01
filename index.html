@@ -1795,6 +1795,7 @@ function changeQuantity(amount) {
       if (order) {
         document.getElementById("customer").value = order.customer || "";
         document.getElementById("product").value = order.product || "";
+        document.getElementById("quantity").value = order.quantity || 1;
         document.getElementById("phone").value = order.phone || "";
         document.getElementById("email").value = order.email || "";
         document.getElementById("address").value = order.address || "";
@@ -1803,6 +1804,9 @@ function changeQuantity(amount) {
         document.getElementById("deliveryDate").value = order.deliveryDate || "";
         document.getElementById("printTime").value = order.printTime ?? "";
         document.getElementById("price").value = order.price ?? "";
+        document.getElementById("shipping").value = order.shipping ?? 0;
+        document.getElementById("price").dataset.basePrice =
+        Math.max(0, Number(order.price || 0) - Number(order.shipping || 0));
         document.getElementById("cost").value = order.cost ?? 0;
         document.getElementById("paymentStatus").value = order.paymentStatus || "Ikke betalt";
         document.getElementById("status").value = order.status || "Ny ordre";
