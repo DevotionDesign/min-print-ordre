@@ -2393,17 +2393,15 @@ function changeQuantity(amount) {
             const mats = (order.materials && order.materials.length)
               ? order.materials
               : (order.material ? [{ material: order.material, weight: order.weight }] : []);
-            if (!mats.length) {
-              return `
-                <tr>
-                  <td>${escapeHtml(order.product)}</td>
-                  <td>—</td>
-                  <td class="num">0</td>
-                  <td class="num">${Number(order.printTime || 0)}</td>
-                  <td class="num">${formatCurrency(price)}</td>
-                </tr>
-              `;
-            }
+           if (!mats.length) {
+            return `
+              <tr>
+                <td>${escapeHtml(order.product)}</td>
+                <td class="num">${Number(order.quantity || 1)}</td>
+                <td class="num">${formatCurrency(price)}</td>
+              </tr>
+  `;
+          }
             return mats.map((m, i) => `
               <tr>
                 <td>${i === 0 ? escapeHtml(order.product) : ""}</td>
