@@ -1800,18 +1800,30 @@ function changeQuantity(amount) {
       if (match) phoneEl.value = match.phone;
     }
 
-    function recalcCost() {
-      const materials = readMaterialLinesFromForm();
-      const totalW = totalWeightOf(materials);
-      const totalDisplay = document.getElementById("materialTotalDisplay");
-      if (totalDisplay) totalDisplay.textContent = `Total: ${totalW} g`;
-      const manual = document.getElementById("costManualFlag").value === "1";
-      if (manual) { updateCostBadge(); return; }
-      const printTime = document.getElementById("printTime").value;
-      const auto = computeAutoCostFromLines(materials, printTime);
-      document.getElementById("cost").value = auto;
-      updateCostBadge();
-    }
+   function recalcCost() {
+  const materials = readMaterialLinesFromForm();
+  const totalW = totalWeightOf(materials);
+  const totalDisplay = document.getElementById("materialTotalDisplay");
+  if (totalDisplay) totalDisplay.textContent = `Total: ${totalW} g`;
+
+  const manual = document.getElementById("costManualFlag").value === "1";
+  if (manual) {
+    updateCostBadge();
+    return;
+  }
+
+  const printTime = Number(document.getElementById("printTime").value || 0);
+  const quantity = Math.max(
+    1,
+    Number(document.getElementById("quantity").value || 1)
+  );
+
+  const autoPerPiece = computeAutoCostFromLines(materials, printTime);
+  const autoTotal = +(autoPerPiece * quantity).toFixed(2);
+
+  document.getElementById("cost").value = autoTotal;
+  updateCostBadge();
+}
 
     function onCostManualChange() {
       document.getElementById("costManualFlag").value = "1";
