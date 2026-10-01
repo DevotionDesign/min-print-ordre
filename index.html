@@ -1720,6 +1720,17 @@ function changeQuantity(amount) {
 
   recalcCost();
 }
+    function updateShipping() {
+  const shipping = Number(document.getElementById("shipping").value || 0);
+  const priceInput = document.getElementById("price");
+
+  if (!priceInput) return;
+
+  const basePrice = Number(priceInput.dataset.basePrice || priceInput.value || 0);
+
+  priceInput.dataset.basePrice = basePrice;
+  priceInput.value = (basePrice + shipping).toFixed(2);
+}
     
     function addMaterialLine(defaults, silent) {
       const box = document.getElementById("materialLines");
