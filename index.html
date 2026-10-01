@@ -905,7 +905,7 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
 
           <div class="form-group">
             <label for="price">Pris i kroner</label>
-            <input id="price" type="number" min="0" step="0.01" required placeholder="F.eks. 175" />
+           <input id="price" type="number" min="0" step="0.01" required placeholder="F.eks. 175" oninput="updateBasePrice()" />
           </div>
 
           <div class="form-group">
@@ -1730,6 +1730,15 @@ function changeQuantity(amount) {
 
   priceInput.dataset.basePrice = basePrice;
   priceInput.value = (basePrice + shipping).toFixed(2);
+}
+    function updateBasePrice() {
+  const priceInput = document.getElementById("price");
+  if (!priceInput) return;
+
+  const shipping = Number(document.getElementById("shipping")?.value || 0);
+  const totalPrice = Number(priceInput.value || 0);
+
+  priceInput.dataset.basePrice = Math.max(0, totalPrice - shipping);
 }
     
     function addMaterialLine(defaults, silent) {
