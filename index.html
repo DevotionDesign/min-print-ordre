@@ -845,10 +845,12 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
             <input id="customer" required placeholder="F.eks. Mads Jensen" list="customerSuggestions" autocomplete="off" oninput="onCustomerInput()" />
           </div>
 
-          <div class="form-group">
-            <label for="product">Produkt</label>
-            <input id="product" required placeholder="F.eks. Telefonholder" />
-            <div class="form-group">
+         <div class="form-group">
+  <label for="product">Produkt</label>
+  <input id="product" required placeholder="F.eks. Telefonholder" />
+</div>
+
+<div class="form-group">
   <label for="quantity">Antal</label>
   <div style="display:flex; align-items:center; gap:8px;">
     <button type="button" onclick="changeQuantity(-1)">−</button>
@@ -856,7 +858,6 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
     <button type="button" onclick="changeQuantity(1)">+</button>
   </div>
 </div>
-          </div>
 
           <div class="form-group">
             <label for="phone">Telefonnummer</label>
