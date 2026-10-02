@@ -2402,15 +2402,13 @@ function changeQuantity(amount) {
               </tr>
   `;
           }
-            return mats.map((m, i) => `
-              <tr>
-                <td>${i === 0 ? escapeHtml(order.product) : ""}</td>
-                <td>${escapeHtml(materialLabel(m.material)) || "—"}</td>
-                <td class="num">${Number(m.weight || 0)}</td>
-                <td class="num">${i === 0 ? Number(order.printTime || 0) : ""}</td>
-                <td class="num">${i === 0 ? formatCurrency(price) : ""}</td>
-              </tr>
-            `).join("");
+           return `
+  <tr>
+    <td>${escapeHtml(order.product)}</td>
+    <td class="num">${Number(order.quantity || 1)}</td>
+    <td class="num">${formatCurrency(price)}</td>
+  </tr>
+`;
           })()
         }
       </tbody>
