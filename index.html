@@ -1285,6 +1285,7 @@ Jeg opdatere ofte siden. Hvis du har ideer eller feedback kan du altid sende en 
     }
     function profitPercentOf(order) {
   const price = Number(order.price || 0);
+      const quantity = Number(order.quantity || 1);
   const profit = profitOf(order);
 
   if (price <= 0) return 0;
@@ -2397,7 +2398,7 @@ function changeQuantity(amount) {
             return `
               <tr>
                 <td>${escapeHtml(order.product)}</td>
-                <td class="num">${Number(order.quantity || 1)}</td>
+                <td class="num">${quantity}</td>
                 <td class="num">${formatCurrency(price)}</td>
               </tr>
   `;
