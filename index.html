@@ -2482,7 +2482,7 @@ function closeInventoryModal() {
   <div class="modal">
     <div class="modal-header">
       <h2>Filamentlager</h2>
-      <button class="close-button" onclick="closeInventoryModal()" aria-label="Luk">×</button>
+      <button class="close-button" onclick="document.getElementById('inventoryModalBackdrop').classList.remove('active')" aria-label="Luk">×</button>
     </div>
 
     <div class="form-grid">
@@ -2516,7 +2516,7 @@ function closeInventoryModal() {
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="secondary-button" onclick="closeInventoryModal()">Annuller</button>
+      <button type="button" class="secondary-button" onclick="document.getElementById('inventoryModalBackdrop').classList.remove('active')">Annuller</button>
       <button type="button" class="primary-button">Gem filament</button>
     </div>
   </div>
