@@ -1801,6 +1801,19 @@ function changeQuantity(amount) {
       return out;
     }
 
+    function openInventoryModal() {
+  const modal = document.getElementById("inventoryModalBackdrop");
+  if (modal) {
+    modal.classList.add("open");
+  }
+}
+
+function closeInventoryModal() {
+  const modal = document.getElementById("inventoryModalBackdrop");
+  if (modal) {
+    modal.classList.remove("open");
+  }
+}
     function openOrderModal(order = null) {
       document.getElementById("modalBackdrop").classList.add("active");
       document.getElementById("modalTitle").textContent = order ? "Rediger ordre" : "Ny ordre";
