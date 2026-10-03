@@ -2465,6 +2465,49 @@ function changeQuantity(amount) {
   </div>
 
   <script>window.addEventListener("load", () => setTimeout(() => window.print(), 300));<\/script>
+<div id="inventoryModalBackdrop" class="modal-backdrop">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Filamentlager</h2>
+      <button class="close-button" onclick="closeInventoryModal()" aria-label="Luk">×</button>
+    </div>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label for="inventoryMaterial">Materiale</label>
+        <select id="inventoryMaterial">
+          <option value="PLA">PLA</option>
+          <option value="PETG">PETG</option>
+          <option value="ABS">ABS</option>
+          <option value="TPU">TPU</option>
+          <option value="Resin">Resin</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="inventoryColor">Farve</label>
+        <input id="inventoryColor" type="text" placeholder="F.eks. Sort" />
+      </div>
+
+      <div class="form-group">
+        <label for="inventoryWeight">Lager i gram</label>
+        <input id="inventoryWeight" type="number" min="0" step="0.1" placeholder="F.eks. 1000" />
+      </div>
+
+      <div class="form-group">
+        <label for="inventoryBarcode">Stregkode</label>
+        <input id="inventoryBarcode" type="text" placeholder="Stregkode / QR-kode" />
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="secondary-button" onclick="closeInventoryModal()">Annuller</button>
+      <button type="button" class="primary-button">Gem filament</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>`;
 
