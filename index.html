@@ -1804,14 +1804,14 @@ function changeQuantity(amount) {
     function openInventoryModal() {
   const modal = document.getElementById("inventoryModalBackdrop");
   if (modal) {
-    modal.classList.add("open");
+    modal.classList.add("active");
   }
 }
 
 function closeInventoryModal() {
   const modal = document.getElementById("inventoryModalBackdrop");
   if (modal) {
-    modal.classList.remove("open");
+    modal.classList.remove("active");
   }
 }
     function openOrderModal(order = null) {
