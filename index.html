@@ -1921,6 +1921,42 @@ function closeInventoryModal() {
     function closeOrderModal() {
       document.getElementById("modalBackdrop").classList.remove("active");
     }
+    function saveInventoryItem() {
+  const material = document.getElementById("inventoryMaterial").value;
+  const color = document.getElementById("inventoryColor").value.trim();
+  const weight = Number(document.getElementById("inventoryWeight").value || 0);
+  const barcode = document.getElementById("inventoryBarcode").value.trim();
+
+  if (!color) {
+    alert("Indtast en farve.");
+    return;
+  }
+
+  if (weight <= 0) {
+    alert("Indtast lager i gram.");
+    return;
+  }
+
+  const inventory = JSON.parse(localStorage.getItem("devotionInventory") || "[]");
+
+  inventory.push({
+    id: Date.now().toString(),
+    material,
+    color,
+    weight,
+    barcode
+  });
+
+  localStorage.setItem("devotionInventory", JSON.stringify(inventory));
+
+  alert("Filamentet er gemt.");
+
+  document.getElementById("inventoryColor").value = "";
+  document.getElementById("inventoryWeight").value = "";
+  document.getElementById("inventoryBarcode").value = "";
+
+  document.getElementById("inventoryModalBackdrop").classList.remove("active");
+}
 
     function editOrder(id) {
       const o = orders.find(x => x.id === id);
