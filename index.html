@@ -1952,6 +1952,7 @@ function closeInventoryModal() {
   });
 
   localStorage.setItem("devotionInventory", JSON.stringify(inventory));
+  renderInventory();
 
   alert("Filamentet er gemt.");
 
@@ -1962,6 +1963,27 @@ function closeInventoryModal() {
   document.getElementById("inventoryModalBackdrop").classList.remove("active");
 }
 
+    function renderInventory() {
+  const container = document.getElementById("inventoryItems");
+  if (!container) return;
+
+  const inventory = JSON.parse(
+    localStorage.getItem("devotionInventory") || "[]"
+  );
+
+  if (!inventory.length) {
+    container.innerHTML = "<p>Intet filament på lager endnu.</p>";
+    return;
+  }
+
+  container.innerHTML = inventory.map(item => `
+    <div style="padding:10px 0; border-bottom:1px solid #ddd;">
+      <strong>${escapeHtml(item.material)} – ${escapeHtml(item.color)}</strong><br>
+      ${Number(item.weight).toFixed(0)} g
+      ${item.barcode ? `<br><small>Stregkode: ${escapeHtml(item.barcode)}</small>` : ""}
+    </div>
+  `).join("");
+}
     function editOrder(id) {
       const o = orders.find(x => x.id === id);
       if (o) openOrderModal(o);
